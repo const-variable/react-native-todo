@@ -25,3 +25,18 @@ export const toggleTodo = (listId, todoId) => {
     payload: {listId, todoId},
   };
 };
+
+export const signIn = (userName, password) => {
+  //authenticate userName and password and generate userToken,
+  const userToken = '4ba56-uV32-23131';
+  return {
+    type: 'SIGN_IN',
+    payload: userToken,
+  };
+};
+
+export const signOut = () => {
+  return {
+    type: 'SIGN_OUT',
+  };
+};

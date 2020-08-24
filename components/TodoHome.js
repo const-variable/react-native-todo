@@ -13,6 +13,8 @@ import {
   SafeAreaView,
 } from 'react-native';
 
+import SingoutButton from './molecules/SingoutButton';
+
 import {addList} from '../redux/actions';
 import Colors from '../config/colors';
 
@@ -47,7 +49,10 @@ class TodoHome extends PureComponent {
       <SafeAreaView style={styles.safeAreaContainer}>
         <View style={styles.container}>
           <View style={styles.headingContainer}>
-            <Text style={styles.title}>Todo Lists {`(${lists.length})`}</Text>
+            <View style={styles.headingSubContainer}>
+              <Text style={styles.title}>Todo Lists {`(${lists.length})`}</Text>
+              <SingoutButton />
+            </View>
             <TextInput
               placeholder="Add list name here.."
               style={styles.textInput}
@@ -83,6 +88,11 @@ const styles = StyleSheet.create({
   container: {
     padding: 10,
     flex: 1,
+  },
+  headingSubContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   title: {
     color: Colors.darkBlue,
