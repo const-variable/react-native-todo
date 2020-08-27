@@ -6,44 +6,67 @@ import {signIn} from '../../redux/actions';
 
 import Colors from '../../config/colors';
 
-const SignInScreen = ({signInAction, navigation}) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+class SignInScreen extends React.PureComponent {
+  // const [username, setUsername] = useState('');
+  // const [password, setPassword] = useState('');
+  state = {
+    userName: '',
+    password: '',
+  };
 
-  return (
-    <View style={styles.container}>
-      <View style={styles.headerContainer}>
-        <Button title="Sign Up" onPress={() => navigation.navigate('SignUp')} />
-      </View>
-      <View style={styles.bodyContainer}>
-        <Text style={styles.headingText}> Welcome to Todo App</Text>
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.textInput}
-            placeholder="Username"
-            value={username}
-            onChangeText={setUsername}
+  handleFieldChange = (fieldName) => (input) => {
+    this.setState({
+      [fieldName]: input,
+    });
+  };
+
+  handleSignIn = () => {
+    const {signInAction, navigation} = this.props;
+    const {userName, password} = this.state;
+
+    if (!userName || !password) {
+      return null;
+    }
+    signInAction(userName, password);
+    navigation.navigate('TodoApp');
+  };
+
+  render() {
+    const {signInAction, navigation} = this.props;
+    const {userName, password} = this.state;
+    return (
+      <View style={styles.container}>
+        <View style={styles.headerContainer}>
+          <Button
+            title="Sign Up"
+            onPress={() => navigation.navigate('SignUp')}
           />
         </View>
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.textInput}
-            placeholder="Password"
-            value={password}
-            onChangeText={setPassword}
-            secureTextEntry
-          />
+        <View style={styles.bodyContainer}>
+          <Text style={styles.headingText}> Welcome to Todo App</Text>
+          <View style={styles.inputContainer}>
+            <TextInput
+              style={styles.textInput}
+              placeholder="Username"
+              value={userName}
+              onChangeText={this.handleFieldChange('userName')}
+            />
+          </View>
+          <View style={styles.inputContainer}>
+            <TextInput
+              style={styles.textInput}
+              placeholder="Password"
+              value={password}
+              onChangeText={this.handleFieldChange('password')}
+              secureTextEntry
+            />
+          </View>
+          <Button title="Sign in" onPress={this.handleSignIn} />
         </View>
-        <Button
-          title="Sign in"
-          onPress={() =>
-            username && password && signInAction(username, password)
-          }
-        />
       </View>
-    </View>
-  );
-};
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
