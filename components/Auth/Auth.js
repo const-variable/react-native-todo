@@ -17,18 +17,20 @@ class Auth extends React.Component {
   render() {
     const {userToken, isSignout} = this.props;
 
-    if (userToken) {
-      return <TabStack />;
-    }
+    // if (userToken) {
+    //   return <TabStack />;
+    // }
 
     return (
       <Stack.Navigator
         screenOptions={{
           title: 'Todo App',
           animationTypeForReplace: isSignout ? 'push' : 'pop',
-        }}>
+        }}
+        initialRouteName={userToken ? 'TodoApp' : 'SignIn'}>
         <Stack.Screen name="SignIn" component={SignInScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
+        <Stack.Screen name="TodoApp" component={TabStack} />
       </Stack.Navigator>
     );
   }
