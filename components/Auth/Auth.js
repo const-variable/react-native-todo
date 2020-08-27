@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import SignInScreen from './SignInScreen';
+import SignUpScreen from './SignUpScreen';
 import TabStack from '../TabStack';
 
 const Stack = createStackNavigator();
@@ -21,15 +22,13 @@ class Auth extends React.Component {
     }
 
     return (
-      <Stack.Navigator>
-        <Stack.Screen
-          name="SignIn"
-          component={SignInScreen}
-          options={{
-            title: 'Sign In',
-            animationTypeForReplace: isSignout ? 'pop' : 'pop',
-          }}
-        />
+      <Stack.Navigator
+        screenOptions={{
+          title: 'Todo App',
+          animationTypeForReplace: isSignout ? 'push' : 'pop',
+        }}>
+        <Stack.Screen name="SignIn" component={SignInScreen} />
+        <Stack.Screen name="SignUp" component={SignUpScreen} />
       </Stack.Navigator>
     );
   }

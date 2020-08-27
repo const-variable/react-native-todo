@@ -2,6 +2,9 @@ import {combineReducers} from 'redux';
 import {createReducer} from '@reduxjs/toolkit';
 
 const initialState = {
+  // firstName: '',
+  // lastName: '',
+  userName: '',
   isSignout: true,
   userToken: null,
   isLoading: false,
@@ -65,7 +68,18 @@ const todoReducer = createReducer(initialState, {
   },
   SIGN_IN: (state, action) => {
     state.isSignout = false;
-    state.userToken = action.payload;
+    const {userToken, userName} = action.payload;
+    state.userToken = userToken;
+    state.userName = userName;
+  },
+  SIGN_UP: (state, action) => {
+    state.isSignout = false;
+    const {userToken, userName, firstName, lastName} = action.payload;
+    console.log(action.payload);
+    state.userToken = userToken;
+    state.userName = userName;
+    state.firstName = firstName;
+    state.lastName = lastName;
   },
   SIGN_OUT: (state) => {
     state.isSignout = true;

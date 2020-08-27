@@ -31,7 +31,15 @@ export const signIn = (userName, password) => {
   const userToken = '4ba56-uV32-23131';
   return {
     type: 'SIGN_IN',
-    payload: userToken,
+    payload: {userToken, userName},
+  };
+};
+
+export const signUp = (firstName, lastName, userName, password) => {
+  const userToken = '4ba56-uV32-23131';
+  return {
+    type: 'SIGN_UP',
+    payload: {userToken, userName, firstName, lastName},
   };
 };
 

@@ -2,26 +2,43 @@ import React, {useState} from 'react';
 import {connect} from 'react-redux';
 
 import {View, Text, StyleSheet, TextInput, Button} from 'react-native';
-import {signIn} from '../../redux/actions';
+import {signUp} from '../../redux/actions';
 
 import Colors from '../../config/colors';
 
-const SignInScreen = ({signInAction, navigation}) => {
-  const [username, setUsername] = useState('');
+const SignUpScreen = ({signUpAction}) => {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [userName, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   return (
     <View style={styles.container}>
-      <View style={styles.headerContainer}>
-        <Button title="Sign Up" onPress={() => navigation.navigate('SignUp')} />
-      </View>
+      <Text style={styles.headingText}>
+        Sign up to <Text style={styles.todoText}> Todo App </Text>, today!
+      </Text>
       <View style={styles.bodyContainer}>
-        <Text style={styles.headingText}> Welcome to Todo App</Text>
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.textInput}
+            placeholder="First name"
+            value={firstName}
+            onChangeText={setFirstName}
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.textInput}
+            placeholder="Last name"
+            value={lastName}
+            onChangeText={setLastName}
+          />
+        </View>
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.textInput}
             placeholder="Username"
-            value={username}
+            value={userName}
             onChangeText={setUsername}
           />
         </View>
@@ -35,10 +52,8 @@ const SignInScreen = ({signInAction, navigation}) => {
           />
         </View>
         <Button
-          title="Sign in"
-          onPress={() =>
-            username && password && signInAction(username, password)
-          }
+          title="Sign Up"
+          onPress={() => signUpAction(firstName, lastName, userName, password)}
         />
       </View>
     </View>
@@ -48,22 +63,21 @@ const SignInScreen = ({signInAction, navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
-  },
-  headerContainer: {
-    alignItems: 'flex-end',
-  },
-  bodyContainer: {
-    flex: 1,
     justifyContent: 'center',
-    marginHorizontal: 50,
+  },
+  todoText: {
+    color: Colors.slateBlue,
+    fontWeight: '800',
   },
   headingText: {
     color: Colors.darkBlue,
-    marginBottom: 20,
     textAlign: 'center',
     fontSize: 22,
     fontWeight: '600',
+  },
+  bodyContainer: {
+    marginTop: 20,
+    marginHorizontal: 50,
   },
   inputContainer: {
     marginVertical: 5,
@@ -83,5 +97,5 @@ const styles = StyleSheet.create({
 });
 
 export default connect(null, {
-  signInAction: signIn,
-})(SignInScreen);
+  signUpAction: signUp,
+})(SignUpScreen);
