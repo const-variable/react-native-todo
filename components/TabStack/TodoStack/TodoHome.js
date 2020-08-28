@@ -13,10 +13,10 @@ import {
   SafeAreaView,
 } from 'react-native';
 
-import SingoutButton from './molecules/SingoutButton';
+import SingoutButton from '../../molecules/SingoutButton';
 
-import {addList} from '../redux/actions';
-import Colors from '../config/colors';
+import {addList} from '../../../redux/actions';
+import Colors from '../../../config/colors';
 
 class TodoHome extends PureComponent {
   state = {

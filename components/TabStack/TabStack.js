@@ -2,8 +2,8 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import Settings from './Settings';
-import {HOME_TAB, SETTINGS_TAB, TABBAR_OPTIONS} from '../config/tab.confing';
-import TodoStack from './TodoStack';
+import {HOME_TAB, SETTINGS_TAB, TABBAR_OPTIONS} from '../../config/tab.confing';
+import TodoStack from './TodoStack/TodoStack';
 
 const Tab = createBottomTabNavigator();
 

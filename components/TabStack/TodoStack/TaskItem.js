@@ -5,7 +5,7 @@ import CheckBox from '@react-native-community/checkbox';
 
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
-import Colors from '../config/colors';
+import Colors from '../../../config/colors';
 
 const RightActions = ({onPress}) => {
   return (

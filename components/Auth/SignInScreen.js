@@ -1,7 +1,14 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
 
-import {View, Text, StyleSheet, TextInput, Button} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Button,
+  SafeAreaView,
+} from 'react-native';
 import {signIn} from '../../redux/actions';
 
 import Colors from '../../config/colors';
@@ -11,37 +18,42 @@ const SignInScreen = ({signInAction, navigation}) => {
   const [password, setPassword] = useState('');
 
   return (
-    <View style={styles.container}>
-      <View style={styles.headerContainer}>
-        <Button title="Sign Up" onPress={() => navigation.navigate('SignUp')} />
-      </View>
-      <View style={styles.bodyContainer}>
-        <Text style={styles.headingText}> Welcome to Todo App</Text>
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.textInput}
-            placeholder="Username"
-            value={username}
-            onChangeText={setUsername}
+    <SafeAreaView style={{flex: 1}}>
+      <View style={styles.container}>
+        <View style={styles.headerContainer}>
+          <Button
+            title="Sign Up"
+            onPress={() => navigation.navigate('SignUp')}
           />
         </View>
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.textInput}
-            placeholder="Password"
-            value={password}
-            onChangeText={setPassword}
-            secureTextEntry
+        <View style={styles.bodyContainer}>
+          <Text style={styles.headingText}> Welcome to Todo App</Text>
+          <View style={styles.inputContainer}>
+            <TextInput
+              style={styles.textInput}
+              placeholder="Username"
+              value={username}
+              onChangeText={setUsername}
+            />
+          </View>
+          <View style={styles.inputContainer}>
+            <TextInput
+              style={styles.textInput}
+              placeholder="Password"
+              value={password}
+              onChangeText={setPassword}
+              secureTextEntry
+            />
+          </View>
+          <Button
+            title="Sign in"
+            onPress={() =>
+              username && password && signInAction(username, password)
+            }
           />
         </View>
-        <Button
-          title="Sign in"
-          onPress={() =>
-            username && password && signInAction(username, password)
-          }
-        />
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

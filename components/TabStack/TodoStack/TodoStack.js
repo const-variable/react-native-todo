@@ -2,25 +2,36 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import _get from 'lodash.get';
+import {TouchableOpacity, StyleSheet} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import TodoHome from './TodoHome';
 import TodoList from './TodoList';
 
-import Colors from '../config/colors';
+import Colors from '../../../config/colors';
 
 const Stack = createStackNavigator();
 
-const TodoStack = ({loggedInUser}) => {
+const TodoStack = ({loggedInUser, navigation}) => {
   return (
     <Stack.Navigator
       screenOptions={{
         headerStyle: {
           backgroundColor: Colors.cream,
         },
+        headerLeft: () => {
+          return (
+            <TouchableOpacity
+              style={styles.menuIcon}
+              onPress={() => navigation.openDrawer()}>
+              <Icon name="menu" size={25} />
+            </TouchableOpacity>
+          );
+        },
       }}>
       <Stack.Screen
-        name="Home"
+        name="TodoHome"
         component={TodoHome}
         options={{
           title: `Hi, ${loggedInUser}`,
@@ -36,6 +47,12 @@ const TodoStack = ({loggedInUser}) => {
     </Stack.Navigator>
   );
 };
+
+const styles = StyleSheet.create({
+  menuIcon: {
+    marginLeft: 10,
+  },
+});
 
 const mapStateToProps = (state) => {
   const userName = _get(state, 'todoReducer.userName');

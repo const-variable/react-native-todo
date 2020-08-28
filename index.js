@@ -7,11 +7,11 @@ import App from './App';
 import {name as appName} from './app.json';
 
 import {Provider} from 'react-redux';
-import {createStore} from 'redux';
-
+import {createStore, applyMiddleware} from 'redux';
+import thunk from 'redux-thunk';
 import rootReducer from './redux/reducer';
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 const reduxIntegratedApp = () => {
   return (

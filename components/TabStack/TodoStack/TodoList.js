@@ -6,10 +6,10 @@ import _values from 'lodash.values';
 import {View, Text, StyleSheet, FlatList, TextInput} from 'react-native';
 
 import TaskItem from './TaskItem';
-import Separator from './molecules/Separator';
-import {deleteTodo, addTodo, toggleTodo} from '../redux/actions';
+import Separator from '../../molecules/Separator';
+import {deleteTodo, addTodo, toggleTodo} from '../../../redux/actions';
 
-import Colors from '../config/colors';
+import Colors from '../../../config/colors';
 
 class TodoList extends React.PureComponent {
   constructor(props) {

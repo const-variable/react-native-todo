@@ -13,6 +13,7 @@ const Colors = {
   lightBlue: '#a8dadc',
   cream: '#f1faee',
   red: '#e63946',
+  lightestGrey: '#e2e2e2',
 };
 
 export default Colors;
